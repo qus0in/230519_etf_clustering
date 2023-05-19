@@ -21,8 +21,11 @@ class EtfRequestDTO:
         }
 
 def get_etf_list(dto: EtfRequestDTO):
-    df = pd.DataFrame(_get_data(dto.params))
-    return df.iloc[:, [0, 1, 2, -2, -1]]
+    df = pd.DataFrame(_get_data(dto.params)).iloc[:, [0, 1, 2, -2, -1]]
+    df.rename(columns={
+        "itemcode": "ticker"
+    })
+    return df
 
 @st.cache_data
 def _get_data(params: dict):
