@@ -11,5 +11,5 @@ etfs = get_etf_list()
 ban_kwd_expander(FILTER_KWD)
 st.dataframe(
     filter_etf_list(etfs, FILTER_KWD),
-    height=200,
+    height=250,
     use_container_width=True)
