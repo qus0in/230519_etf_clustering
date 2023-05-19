@@ -1,4 +1,5 @@
 import streamlit as st
+from src.etf_list import FILTER_KWD
 
 def quantile_slider(label, key, default=0.5):
     SLIDER_OPTION = {
