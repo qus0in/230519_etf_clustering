@@ -14,7 +14,8 @@ kwd = [
     "삼성", "ESG", "현대", "TSMC", "테슬라",
     "BBIG", "머니마켓", "혼합", "TIGER TOP10", 
     ]
-st.write("**제외 키워드** : 🚫 " + " 🚫 ".join(kwd))
+with st.expander("제외 키워드"):
+    st.write("🚫 " + " 🚫 ".join(kwd))
 etfs = get_etf_list()
 st.dataframe(filter_etf_list(etfs, kwd),
              use_container_width=True)
