@@ -20,7 +20,12 @@ class EtfListRequestDTO:
             "sortOrder": self.sortOrder
         }
 
-def get_etf_list(dto: EtfListRequestDTO):
+def get_etf_list(dto: EtfListRequestDTO=None):
+    if dto is None:
+        dto = EtfListRequestDTO(
+            EtfType.전체,
+            TargetColumn.시가총액
+        )
     df = pd.DataFrame(_get_data(dto.params)).iloc[:, [0, 1, 2, -2, -1]]
     df.rename(columns={
         "itemcode": "ticker",
@@ -30,6 +35,13 @@ def get_etf_list(dto: EtfListRequestDTO):
         "marketSum": "market_cap"
     }, inplace=True)
     return df
+
+def filter_etf_list(etfList, kwd, volume = 0.5, cap = 0.5):
+    kwd_filter = [f"name.str.contains('{k}')" for k in kwd]
+    query = "category != 1 and not (" + " or ".join(kwd_filter) + ")"\
+        + f" and trade_volume > {etfList.trade_volume.quantile(st.session_state.trade_volume_quantile)}"\
+        + f" and market_cap > {etfList.market_cap.quantile(st.session_state.market_cap_quantile)}"
+    return etfList.query(query)
 
 @st.cache_data
 def _get_data(params: dict):
