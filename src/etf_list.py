@@ -1,5 +1,7 @@
 import requests
 import pandas as pd
+import streamlit as st
+
 from src.enums import *
 
 class EtfRequestDTO:
@@ -20,6 +22,7 @@ class EtfRequestDTO:
 
 ENDPOINT = 'https://finance.naver.com/api/sise/etfItemList.nhn'
 
+@st.cache_data
 def get_etf_list(dto: EtfRequestDTO):
     res = requests.get(ENDPOINT, dto.params)
     data = res.json()['result']['etfItemList']
