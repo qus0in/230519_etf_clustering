@@ -50,7 +50,7 @@ def load_history(filtered_etfs):
     
     progress_bar.empty()
 
-    with st.expander(f"상장일 {st.session_state.history_days}일 미만"):
+    with st.expander(f"상장일 200일 미만"):
         st.dataframe(
             pd.DataFrame(error, columns=["종목코드", "종목명"]
                             ).set_index("종목코드"),
