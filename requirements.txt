@@ -1,4 +1,4 @@
 finance-datareader
 bs4
 plotly
-sklearn
+scikit-learn
