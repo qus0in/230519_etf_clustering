@@ -23,7 +23,7 @@ def dendrogram(etfs):
     fig = ff.create_dendrogram(corr_matrix.values, labels=corr_matrix.columns)
 
     fig.update_layout(
-        title='덴드로그램',  # 그래프 제목
+        # title='덴드로그램',  # 그래프 제목
         xaxis={'title': '클러스터'},  # x축 제목
         yaxis={'title': '거리'},  # y축 제목
         height=600
@@ -53,9 +53,10 @@ def silhouette(corr_matrix):
     fig = go.Figure(data=go.Scatter(x=list(range(min_clusters, max_clusters + 1)),
                                     y=silhouette_scores, mode='lines+markers'))
     fig.update_layout(
-        title='클러스터 수에 따른 실루엣 스코어',
+        # title='클러스터 수에 따른 실루엣 스코어',
         xaxis_title='클러스터 수',
-        yaxis_title='실루엣 스코어'
+        yaxis_title='실루엣 스코어',
+        height=400,
     )
     st.plotly_chart(fig, use_container_width=True)
 
