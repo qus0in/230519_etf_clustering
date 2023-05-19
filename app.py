@@ -3,8 +3,9 @@ from src.enums import *
 from src.widget import quantile_slider
 import streamlit as st
 
-quantile_slider("거래금액", "trade_volume", 0.7)
-quantile_slider("시가총액", "market_cap", 0.7)
+col1, col2 = st.columns(2)
+with col1: quantile_slider("거래금액", "trade_volume", 0.7)
+with col2: quantile_slider("시가총액", "market_cap", 0.7)
 
 kwd = [
     "레버리지", "2X", "배당", "TRF", "TDF",
