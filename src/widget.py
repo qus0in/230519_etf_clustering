@@ -14,5 +14,5 @@ def quantile_slider(label, key, default=0.5):
         **SLIDER_OPTION)
 
 def ban_kwd_expander(kwd):
-    with st.expander("제외 키워드"):
+    with st.expander(f"제외 키워드 ({len(kwd)})"):
         st.write("🚫 " + " 🚫 ".join(kwd))
