@@ -24,8 +24,7 @@ def dendrogram():
         title='덴드로그램',  # 그래프 제목
         xaxis={'title': '클러스터'},  # x축 제목
         yaxis={'title': '거리'},  # y축 제목
-        width=800,
         height=600
     )
     
-    st.plotly_chart(fig)
+    st.plotly_chart(fig, use_container_width=True)
