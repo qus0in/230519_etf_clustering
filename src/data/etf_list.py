@@ -24,7 +24,7 @@ class EtfListRequestDTO:
 def get_etf_list(dto: EtfListRequestDTO=None):
     if dto is None:
         dto = EtfListRequestDTO(
-            EtfType.전체,
+            EtfType.국내업종테마,
             TargetColumn.시가총액
         )
     df = pd.DataFrame(_get_data(dto.params)).iloc[:, [0, 1, 2, -2, -1]]
