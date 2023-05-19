@@ -12,7 +12,8 @@ def build():
 
         check_session()
         load_history(filtered_etfs)
-        dendrogram(etfs.set_index('ticker'))
+        corr_matrix = dendrogram(etfs.set_index('ticker'))
+        clustering(corr_matrix)
 
     else:
         
