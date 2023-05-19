@@ -14,8 +14,10 @@ def build():
             filtered_etfs = filter_etf_list(etfs)
 
         hs = load_history(filtered_etfs)
-        corr_matrix = dendrogram(etfs.set_index('ticker'), hs)
-        best_number = silhouette(corr_matrix)
+        with st.expander("덴드로그램"):
+            corr_matrix = dendrogram(etfs.set_index('ticker'), hs)
+        with st.expander("실루엣 스코어"):
+            best_number = silhouette(corr_matrix)
         st.write(best_number)
  
     else:
