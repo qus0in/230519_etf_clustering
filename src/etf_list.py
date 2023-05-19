@@ -23,7 +23,11 @@ class EtfRequestDTO:
 def get_etf_list(dto: EtfRequestDTO):
     df = pd.DataFrame(_get_data(dto.params)).iloc[:, [0, 1, 2, -2, -1]]
     df.rename(columns={
-        "itemcode": "ticker"
+        "itemcode": "ticker",
+        "etfTabCode": "category",
+        "itemname": "name",
+        "amonut": "trade_volume",
+        "marketSum": "market_cap"
     }, inplace=True)
     return df
 
