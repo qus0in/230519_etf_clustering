@@ -9,9 +9,7 @@ from sklearn.metrics import silhouette_score
 from src.data.history import *
 
 def dendrogram(etfs, history):
-    st.write(history)
-    
-    data = {k: v.Close for k, v in history}
+    data = {k: v.Close for k, v in history.items()}
     df = pd.concat(data, axis=1)
     df_er = get_earning_rate(df, etfs)
 
@@ -56,7 +54,7 @@ def silhouette(corr_matrix):
     fig = go.Figure(data=go.Scatter(x=list(range(min_clusters, max_clusters + 1)),
                                     y=silhouette_scores, mode='lines+markers'))
     fig.update_layout(
-        title='클러스터 수에 따른 실루엣 스코어',
+        title='실루엣 스코어',
         xaxis_title='클러스터 수',
         yaxis_title='실루엣 스코어',
         height=400,
