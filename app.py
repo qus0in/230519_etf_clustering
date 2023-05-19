@@ -8,7 +8,7 @@ etfList = get_etf_list(
         TargetColumn.시가총액
     )
 )
-kwd = ["레버리지"]
+kwd = ["레버리지", "2X", "금리"]
 query = [f"name.str.contains('{k}')" for k in kwd]
 fillteredEtfList = etfList.query(
     "category != 1 and not (" + " or ".join(query) + ")"
