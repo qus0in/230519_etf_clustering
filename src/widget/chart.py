@@ -8,7 +8,7 @@ from src.data.history import *
 
 def dendrogram():
     data = {k: v.Close for k, v in st.session_state.history.items()}
-    df = pd.concat([d.Close for d in data], axis=1)
+    df = pd.concat(data, axis=1)
     st.write(df)
     # df_er = get_earning_rate(df)
 
