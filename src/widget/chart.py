@@ -7,7 +7,7 @@ from scipy.spatial.distance import squareform
 from src.data.history import *
 
 def dendrogram():
-    data = st.session_state.history
+    data = {k: v.Close for k, v in st.session_state.history.items()}
     st.write(data)
     # df = pd.concat([d.Close for d in data], axis=1)
     # df_er = get_earning_rate(df)
