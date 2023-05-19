@@ -1,4 +1,6 @@
 import streamlit as st
+from PIL import Image
+
 from src.data.etf_list import *
 from src.data.history import *
 from src.widget.chart import *
