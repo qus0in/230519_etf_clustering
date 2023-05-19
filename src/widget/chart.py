@@ -1,8 +1,10 @@
+import streamlit as st
+import pandas as pd
+
 import plotly.figure_factory as ff
 from scipy.spatial.distance import squareform
 
-import streamlit as st
-import pandas as pd
+from src.data.history import *
 
 def dendrogram():
     data = st.session_state.history
