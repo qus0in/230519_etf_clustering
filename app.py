@@ -20,9 +20,10 @@ if st.session_state.run:
         try:
             histories[ticker] = get_history(ticker, st.session_state.history_days)
         except:
-            error[ticker] = filtered_etfs[filtered_etfs.ticker == ticker].item_name
+            error[ticker] = filtered_etfs[filtered_etfs.ticker == ticker].iloc[0].item_name
         bar.progress((idx + 1) / len(tickers), text=progress_text)
-    bar.empty()
-    st.write(error)
+        st.subheader("상장일 미충족")
+        st.write(error)
+        bar.empty()
 else:
     st.info("ready...")
