@@ -18,9 +18,10 @@ def build():
         
         st.info("ready...")
 
+_PROGERSS_TEXT = "🫠 거래 데이터를 불러오는 중입니다"
+
 def bar():
-    progress_text = "🫠 거래 데이터를 불러오는 중입니다"
-    return st.progress(0, text=progress_text)
+    return st.progress(0, text=_PROGERSS_TEXT)
 
 def check_session():
     if 'history' not in st.session_state:
@@ -36,7 +37,8 @@ def load_history(tickers):
             st.session_state.history[ticker] = get_history(ticker, st.session_state.history_days)
         except:
             error.append((ticker, filtered_etfs[filtered_etfs.ticker == ticker].iloc[0].item_name))
-        progress_bar.progress((idx + 1) / len(tickers), text=progress_text)
+        rate = (idx + 1) / len(tickers)
+        progress_bar.progress(rate, text=_PROGERSS_TEXT + f"({rate * 100}%)")
     
     progress_bar.empty()
 
