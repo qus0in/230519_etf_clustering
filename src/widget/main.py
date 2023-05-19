@@ -13,11 +13,9 @@ def build():
             etfs = get_etf_list()
             filtered_etfs = filter_etf_list(etfs)
 
-        history = load_history(filtered_etfs)
-        with st.expander("덴드로그램"):
-            corr_matrix = dendrogram(etfs.set_index('ticker'), history)
-        with st.expander("실루엣 스코어"):
-            best_number = silhouette(corr_matrix)
+        hs = load_history(filtered_etfs)
+        corr_matrix = dendrogram(etfs.set_index('ticker'), hs)
+        best_number = silhouette(corr_matrix)
         st.write(best_number)
  
     else:
@@ -33,12 +31,12 @@ def load_history(filtered_etfs):
     error = []
     progress_bar = bar()
     tickers = filtered_etfs.ticker
-    history = {}
+    hs = {}
 
     for idx in range(len(tickers)):
         ticker = tickers[idx]
         try:
-            history[ticker] = get_history(ticker, st.session_state.history_days)
+            hs[ticker] = get_history(ticker, st.session_state.history_days)
         except:
             error.append((ticker, filtered_etfs[filtered_etfs.ticker == ticker].iloc[0].item_name))
         rate = (idx + 1) / len(tickers)
@@ -52,5 +50,4 @@ def load_history(filtered_etfs):
                             ).set_index("종목코드"),
             height=250,
             use_container_width=True)
-    st.write(history)
-    return history
+    return hs
