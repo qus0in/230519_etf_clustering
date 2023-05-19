@@ -1,11 +1,11 @@
 import streamlit as st
 
-def quantile_slider(label, key):
+def quantile_slider(label, key, default=0.5):
     SLIDER_OPTION = {
         "min_value" : 0.,
         "max_value" : 0.9,
         "step"      : 0.1,
-        "value"     : 0.5,
+        "value"     : default,
         "format"    : "%.1f"
     }
     st.slider(
