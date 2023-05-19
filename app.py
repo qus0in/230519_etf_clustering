@@ -1,7 +1,9 @@
 from src.etf_list import get_etf_list, filter_etf_list
 from src.history import get_history
 from src.widget import sidebar
+
 import streamlit as st
+import pandas as pd
 
 sidebar()
 
