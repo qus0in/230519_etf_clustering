@@ -1,10 +1,9 @@
-from src.etf_list import get_etf_list, filter_etf_list, FILTER_KWD
+from src.etf_list import get_etf_list, filter_etf_list
 from src.history import get_history
-from src.enums import *
-from src.widget import header
+from src.widget import sidebar
 import streamlit as st
 
-header()
+sidebar()
 
 etfs = get_etf_list()
 filtered_etfs = filter_etf_list(etfs)
@@ -13,5 +12,5 @@ filtered_etfs = filter_etf_list(etfs)
 #     height=250,
 #     use_container_width=True)
 
-if st.button("이력 불러오기"):
+if st.button("불러오기", use_container_width=True):
     st.write(filtered_etfs.ticker)

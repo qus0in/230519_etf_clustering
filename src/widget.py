@@ -18,8 +18,8 @@ def ban_kwd_expander(kwd):
     with st.expander(f"제외 키워드 ({len(kwd)})"):
         st.write("🚫 " + " 🚫 ".join(kwd))
 
-def header():
-    col1, col2 = st.columns(2)
-    with col1: quantile_slider("거래금액", "trade_volume", 0.7)
-    with col2: quantile_slider("시가총액", "market_cap", 0.7)
-    ban_kwd_expander(FILTER_KWD)
+def sidebar():
+    with st.sidebar:
+        quantile_slider("거래금액", "trade_volume", 0.7)
+        quantile_slider("시가총액", "market_cap", 0.7)
+        ban_kwd_expander(FILTER_KWD)
