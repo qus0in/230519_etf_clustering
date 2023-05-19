@@ -20,7 +20,7 @@ class EtfRequestDTO:
 
 ENDPOINT = 'https://finance.naver.com/api/sise/etfItemList.nhn'
 
-def get_etf_item_list(dto: EtfRequestDTO):
+def get_etf_list(dto: EtfRequestDTO):
     res = requests.get(ENDPOINT, dto.params)
     # df.set_index('itemcode', inplace=True)
     # df = df[['itemcode', 'itemname']]
