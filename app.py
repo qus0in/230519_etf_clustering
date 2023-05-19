@@ -12,7 +12,7 @@ if st.session_state.run:
         etfs = get_etf_list()
         filtered_etfs = filter_etf_list(etfs)
 
-    if 'histories' not in st.session_state:
+    if 'history' not in st.session_state:
         st.session_state['history'] = {}
         error = []
         tickers = filtered_etfs.ticker
