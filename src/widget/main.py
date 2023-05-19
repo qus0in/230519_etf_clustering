@@ -14,7 +14,7 @@ def build():
         load_history(filtered_etfs)
         with st.expander("덴드로그램"):
             corr_matrix = dendrogram(etfs.set_index('ticker'))
-        with st.expander("클러스터링 실루엣 스코어")
+        with st.expander("실루엣 스코어"):
             best_number = silhouette(corr_matrix)
         st.metric(best_number)
 
