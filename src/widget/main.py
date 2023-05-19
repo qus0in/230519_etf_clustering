@@ -12,8 +12,7 @@ def build():
 
         check_session()
         load_history(filtered_etfs)
-        st.write(filtered_etfs)
-        # dendrogram(etfs.set_index('itemcode'))
+        dendrogram(etfs.set_index('ticker'))
 
     else:
         
