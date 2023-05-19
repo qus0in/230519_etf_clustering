@@ -11,10 +11,9 @@ if st.session_state.run:
 
     histories = {}
     error = {}
-    for item in filtered_etfs.iloc[:]:
-        st.write(item)
+    for ticker in filtered_etfs.ticker:
         try:
-            histories[item.ticker] = get_history(item.ticker, st.session_state.history_days)
+            histories[ticker] = get_history(item.ticker, st.session_state.history_days)
         except:
             error[item.ticker] = item.name
 
