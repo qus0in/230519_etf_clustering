@@ -25,7 +25,9 @@ if st.session_state.run:
             error[ticker] = filtered_etfs[filtered_etfs.ticker == ticker].iloc[0].item_name
         bar.progress((idx + 1) / len(tickers), text=progress_text)
     st.subheader(f"상장일 {st.session_state.history_days}일 미만")
-    st.dataframe(pd.DataFrame(error, columns=["종목코드", "종목명"]))
+    df = pd.DataFrame(error)
+    df.columns=["종목명"]
+    st.dataframe(df)
     bar.empty()
 else:
     st.info("ready...")
