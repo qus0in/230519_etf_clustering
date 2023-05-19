@@ -7,10 +7,14 @@ sidebar()
 
 etfs = get_etf_list()
 filtered_etfs = filter_etf_list(etfs)
-# st.dataframe(
-#     filtered_etfs,
-#     height=250,
-#     use_container_width=True)
 
-if st.button("불러오기", use_container_width=True):
-    st.write(filtered_etfs.ticker)
+histories = {}
+error = {}
+for item in filtered_etfs.iloc[:]:
+    try:
+        histories[item.ticker] = get_history(item.ticker, st.session_state.history_days)
+    except:
+        error[item.ticker] = item.name
+
+st.write(error)
+
