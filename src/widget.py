@@ -6,6 +6,7 @@ def quantile_slider(label, key):
         "max_value" : 0.9,
         "step"      : 0.1,
         "value"     : 0.5,
+        "format"    : "%.2f"
     }
     st.slider(
         label=label + " 백분위수",
