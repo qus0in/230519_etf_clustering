@@ -44,8 +44,8 @@ FILTER_KWD = [
     "BBIG", "머니마켓", "혼합", "TIGER TOP10", 
 ]
 
-def filter_etf_list(etfList, kwd, volume = 0.5, cap = 0.5):
-    kwd_filter = [f"name.str.contains('{k}')" for k in kwd]
+def filter_etf_list(etfList, volume = 0.5, cap = 0.5):
+    kwd_filter = [f"name.str.contains('{k}')" for k in FILTER_KWD]
     query = "category != 1 and not (" + " or ".join(kwd_filter) + ")"\
         + f" and trade_volume > {etfList.trade_volume.quantile(st.session_state.trade_volume_quantile)}"\
         + f" and market_cap > {etfList.market_cap.quantile(st.session_state.market_cap_quantile)}"
