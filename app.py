@@ -1,4 +1,4 @@
-from src.widget import *
+from src.widget import sidebar, main
 
 sidebar.build()
 main.build()
