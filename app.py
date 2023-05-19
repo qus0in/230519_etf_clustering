@@ -11,6 +11,6 @@ etfList = get_etf_list(
 kwd = ["레버리지"]
 query = [f"name.str.contains('{k}')" for k in kwd]
 fillteredEtfList = etfList.query(
-    "category != 1 and (" + " or ".join(query) + ")"
+    "category != 1 and not (" + " or ".join(query) + ")"
 )
 st.dataframe(fillteredEtfList)
