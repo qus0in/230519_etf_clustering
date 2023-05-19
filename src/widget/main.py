@@ -1,5 +1,6 @@
 import streamlit as st
 from PIL import Image
+import os
 
 from src.data.etf_list import *
 from src.data.history import *
