@@ -5,16 +5,17 @@ import streamlit as st
 
 sidebar()
 
-etfs = get_etf_list()
-filtered_etfs = filter_etf_list(etfs)
+if st.session_state.run:
+    etfs = get_etf_list()
+    filtered_etfs = filter_etf_list(etfs)
 
-histories = {}
-error = {}
-for item in filtered_etfs.iloc[:]:
-    try:
-        histories[item.ticker] = get_history(item.ticker, st.session_state.history_days)
-    except:
-        error[item.ticker] = item.name
+    histories = {}
+    error = {}
+    for item in filtered_etfs.iloc[:]:
+        try:
+            histories[item.ticker] = get_history(item.ticker, st.session_state.history_days)
+        except:
+            error[item.ticker] = item.name
 
-st.write(error)
+    st.write(error)
 

@@ -28,5 +28,5 @@ def sidebar():
 _BUTTON_OPTION = {
     "label": "🔄 불러오기",
     "use_container_width" : True,
-    "on_click": st.balloons
+    "key": "run",
 }
