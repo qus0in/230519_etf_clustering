@@ -17,4 +17,4 @@ filtered_etfs = filter_etf_list(etfs)
 #     use_container_width=True)
 
 if st.button("이력 불러오기"):
-    st.write(filtered_etfs.iloc[0].code)
+    st.write(filtered_etfs.ticker)
