@@ -10,6 +10,6 @@ etfList = get_etf_list(
 )
 kwd = ["레버리지"]
 fillteredEtfList = etfList.query(
-    "category != 1 and @kwd in name"
+    "category != 1 and (@kwd in name)"
 )
 st.dataframe(fillteredEtfList)
