@@ -10,8 +10,8 @@ def filtering(etfList, kwd, volume = 0.5, cap = 0.5):
     return etfList.query(query)
 
 SLIDER_OPTION = {
-    "min_value" : 0,
-    "max_value" : 1,
+    "min_value" : 0.,
+    "max_value" : 1.,
     "step"      : 0.1,
     "value"     : 0.5,
 }
