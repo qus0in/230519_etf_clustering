@@ -18,4 +18,5 @@ if st.session_state.run:
             error[item.ticker] = item.name
 
     st.write(error)
-
+else:
+    st.info("ready...")
