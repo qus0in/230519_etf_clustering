@@ -12,8 +12,11 @@ def build():
 
         check_session()
         load_history(filtered_etfs)
-        corr_matrix = dendrogram(etfs.set_index('ticker'))
-        clustering(corr_matrix)
+        with st.expander("덴드로그램"):
+            corr_matrix = dendrogram(etfs.set_index('ticker'))
+        with st.expander("클러스터링 실루엣 스코어")
+            best_number = silhouette(corr_matrix)
+        st.metrics(best_number)
 
     else:
         

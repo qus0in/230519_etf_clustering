@@ -32,7 +32,7 @@ def dendrogram(etfs):
     st.plotly_chart(fig, use_container_width=True)
     return corr_matrix
 
-def clustering(corr_matrix):
+def silhouette(corr_matrix):
     # 계층적 클러스터링 수행
     cluster = AgglomerativeClustering()
 
@@ -58,3 +58,8 @@ def clustering(corr_matrix):
         yaxis_title='실루엣 스코어'
     )
     st.plotly_chart(fig, use_container_width=True)
+
+    best_score = max(silhouette_scores)
+    best_index = silhouette_scores.index(best_score)
+    best_num_clusters = best_index + min_clusters
+    return best_num_clusters
