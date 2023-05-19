@@ -30,13 +30,14 @@ def check_session():
 def load_history(filtered_etfs):
     error = []
     progress_bar = bar()
-    
+    tickers = filtered_etfs.ticker
+
     for idx in range(len(tickers)):
         ticker = tickers[idx]
         try:
             st.session_state.history[ticker] = get_history(ticker, st.session_state.history_days)
         except:
-            error.append((filtered_etfs.ticker, filtered_etfs[filtered_etfs.ticker == ticker].iloc[0].item_name))
+            error.append((ticker, filtered_etfs[filtered_etfs.ticker == ticker].iloc[0].item_name))
         rate = (idx + 1) / len(tickers)
         progress_bar.progress(rate, text=_PROGERSS_TEXT + f"({rate * 100:.2f}%)")
     
