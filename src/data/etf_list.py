@@ -42,6 +42,7 @@ def filter_etf_list(etfList):
     query = "not (" + " or ".join(kwd_filter) + ")"\
         + f" and trade_volume >= {etfList.trade_volume.quantile(.5)}"\
         + f" and market_cap >= {etfList.market_cap.quantile(.5)}"
+    st.write(query)
     return etfList.query(query).reset_index(drop=True)
 
 @st.cache_data(show_spinner=False)
