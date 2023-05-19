@@ -38,6 +38,7 @@ def get_etf_list(dto: EtfListRequestDTO=None):
     return df
 
 def filter_etf_list(etfList):
+    st.write(etfList)
     kwd_filter = [f"item_name.str.contains('{k}')" for k in FILTER_KWD]
     query = "not (" + " or ".join(kwd_filter) + ")"\
         + f" and (trade_volume >= {etfList.trade_volume.mean()})"\
