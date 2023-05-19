@@ -27,6 +27,6 @@ def get_etf_list(dto: EtfRequestDTO):
 @st.cache
 def _get_data(params):
     ENDPOINT = 'https://finance.naver.com/api/sise/etfItemList.nhn'
-    res = requests.get(ENDPOINT, dto.params)
+    res = requests.get(ENDPOINT, params)
     data = res.json()['result']['etfItemList']
     return data
