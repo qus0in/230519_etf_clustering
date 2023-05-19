@@ -22,6 +22,7 @@ if st.session_state.run:
         except:
             error[ticker] = filtered_etfs[filtered_etfs.ticker == ticker].item_name
         bar.progress((idx + 1) / len(tickers), text=progress_text)
+    bar.empty()
     st.write(error)
 else:
     st.info("ready...")
