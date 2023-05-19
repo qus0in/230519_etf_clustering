@@ -38,7 +38,7 @@ def load_history(tickers):
         except:
             error.append((ticker, filtered_etfs[filtered_etfs.ticker == ticker].iloc[0].item_name))
         rate = (idx + 1) / len(tickers)
-        progress_bar.progress(rate, text=_PROGERSS_TEXT + f"({rate * 100}%)")
+        progress_bar.progress(rate, text=_PROGERSS_TEXT + f"({rate * 100:.2f}%)")
     
     progress_bar.empty()
 
