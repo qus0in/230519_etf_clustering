@@ -13,7 +13,7 @@ if st.session_state.run:
         filtered_etfs = filter_etf_list(etfs)
 
     if 'histories' not in st.session_state:
-        st.session_state[history] = {}
+        st.session_state['history'] = {}
         error = []
         tickers = filtered_etfs.ticker
         progress_text = "🫠 거래 데이터를 불러오는 중입니다"
