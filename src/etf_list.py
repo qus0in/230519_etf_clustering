@@ -22,6 +22,6 @@ ENDPOINT = 'https://finance.naver.com/api/sise/etfItemList.nhn'
 
 def get_etf_list(dto: EtfRequestDTO):
     res = requests.get(ENDPOINT, dto.params)
-    # df.set_index('itemcode', inplace=True)
-    # df = df[['itemcode', 'itemname']]
-    return res.json()['result']['etfItemList']
+    data = res.json()['result']['etfItemList']
+    df = pd.DataFrame(data)
+    return df.iloc[:, [0, 1, 2, -2, -1]]
