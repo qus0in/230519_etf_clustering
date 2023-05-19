@@ -44,7 +44,7 @@ def filter_etf_list(etfList):
     eftList2 = etfList.query(query1)
     query2 = f"trade_volume > {eftList2.trade_volume.quantile(st.session_state.trade_volume_quantile)}"\
         + f" and market_cap > {eftList2.market_cap.quantile(st.session_state.market_cap_quantile)}"
-    return .query(query2).reset_index(drop=True)
+    return eftList2.query(query2).reset_index(drop=True)
 
 @st.cache_data(show_spinner=False)
 def _get_data(params: dict):
