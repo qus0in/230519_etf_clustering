@@ -28,7 +28,8 @@ if st.session_state.run:
         bar.empty()
         with st.expander(f"상장일 {st.session_state.history_days}일 미만"):
             st.dataframe(
-                pd.DataFrame(error, columns=["종목코드", "종목명"]),
+                pd.DataFrame(error, columns=["종목코드", "종목명"]
+                             ).set_index("종목코드"),
                 height=250,
                 use_container_width=True)
     
