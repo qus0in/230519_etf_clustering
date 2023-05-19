@@ -27,8 +27,10 @@ if st.session_state.run:
             bar.progress((idx + 1) / len(tickers), text=progress_text)
         bar.empty()
         with st.expander(f"상장일 {st.session_state.history_days}일 미만"):
-            st.dataframe(pd.DataFrame(error, columns=["종목코드", "종목명"]),
-                        use_container_width=True)
+            st.dataframe(
+                pd.DataFrame(error, columns=["종목코드", "종목명"]),
+                height=250,
+                use_container_width=True)
     
     st.info("set...")
 
