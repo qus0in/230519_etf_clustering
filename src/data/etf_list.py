@@ -37,13 +37,14 @@ def get_etf_list(dto: EtfListRequestDTO=None):
     }, inplace=True)
     return df
 
-def filter_etf_list(etfList, volume = 0.5, cap = 0.5):
+def filter_etf_list(etfList):
     kwd_filter = [f"item_name.str.contains('{k}')" for k in FILTER_KWD]
     category = [2]
     query1 = "(category in @category) and not (" + " or ".join(kwd_filter) + ")"
-    query2 = f"trade_volume > {etfList.trade_volume.quantile(st.session_state.trade_volume_quantile)}"\
-        + f" and market_cap > {etfList.market_cap.quantile(st.session_state.market_cap_quantile)}"
-    return etfList.query(query1).query(query2).reset_index(drop=True)
+    eftList2 = etfList.query(query1)
+    query2 = f"trade_volume > {eftList2.trade_volume.quantile(st.session_state.trade_volume_quantile)}"\
+        + f" and market_cap > {eftList2.market_cap.quantile(st.session_state.market_cap_quantile)}"
+    return .query(query2).reset_index(drop=True)
 
 @st.cache_data(show_spinner=False)
 def _get_data(params: dict):
