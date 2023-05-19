@@ -16,7 +16,7 @@ def build():
             corr_matrix = dendrogram(etfs.set_index('ticker'))
         with st.expander("실루엣 스코어"):
             best_number = silhouette(corr_matrix)
-        st.metric(best_number)
+        st.write(best_number)
 
     else:
         
