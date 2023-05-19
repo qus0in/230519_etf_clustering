@@ -2,7 +2,9 @@ import streamlit as st
 import pandas as pd
 
 import plotly.figure_factory as ff
-from scipy.spatial.distance import squareform
+import plotly.graph_objects as go
+from sklearn.cluster import AgglomerativeClustering
+from sklearn.metrics import silhouette_score
 
 from src.data.history import *
 
@@ -28,3 +30,31 @@ def dendrogram(etfs):
     )
     
     st.plotly_chart(fig, use_container_width=True)
+    return corr_matrix
+
+def clustering(corr_matrix):
+    # 계층적 클러스터링 수행
+    cluster = AgglomerativeClustering()
+
+    # 클러스터 수 범위 설정
+    min_clusters = 2
+    max_clusters = 10
+
+    # 결과 저장 리스트
+    silhouette_scores = []
+
+    # 각 클러스터 수에 대해 클러스터링 수행 및 평가 지표 계산
+    for n_clusters in range(min_clusters, max_clusters + 1):
+        cluster.set_params(n_clusters=n_clusters)
+        labels = cluster.fit_predict(corr_matrix)
+        silhouette_scores.append(silhouette_score(corr_matrix, labels))
+
+    # 클러스터 수에 따른 실루엣 스코어 시각화
+    fig = go.Figure(data=go.Scatter(x=list(range(min_clusters, max_clusters + 1)),
+                                    y=silhouette_scores, mode='lines+markers'))
+    fig.update_layout(
+        title='클러스터 수에 따른 실루엣 스코어',
+        xaxis_title='클러스터 수',
+        yaxis_title='실루엣 스코어'
+    )
+    fig.show()
