@@ -13,6 +13,6 @@ kwd_filter = [f"name.str.contains('{k}')" for k in kwd]
 fillteredEtfList = etfList.query(
     "category != 1 and not (" + " or ".join(kwd_filter) + ")"
     + f" and trade_volume > {etfList.trade_volume.quantile(.5)}"
-    + f" and market_cap > {etfList.market_cap.quantile(.5)}"
+    + f" and market_cap > {etfList.market_cap.mean()}"
 )
 st.dataframe(fillteredEtfList)
