@@ -12,6 +12,7 @@ def build():
         with st.spinner("🫠 ETF 리스트를 불러오는 중입니다"):
             etfs = get_etf_list()
             filtered_etfs = filter_etf_list(etfs)
+            st.write(filtered_etfs)
 
         check_session()
         load_history(filtered_etfs)
