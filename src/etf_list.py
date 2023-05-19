@@ -30,7 +30,7 @@ def get_etf_list(dto: EtfListRequestDTO=None):
     df.rename(columns={
         "itemcode": "ticker",
         "etfTabCode": "category",
-        "itemname": "name",
+        "itemname": "item_name",
         "amonut": "trade_volume",
         "marketSum": "market_cap"
     }, inplace=True)

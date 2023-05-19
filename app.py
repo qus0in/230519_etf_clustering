@@ -15,7 +15,7 @@ if st.session_state.run:
         try:
             histories[ticker] = get_history(ticker, st.session_state.history_days)
         except:
-            error[ticker] = filtered_etfs[filtered_etfs.ticker == ticker]['name'][0]
+            error[ticker] = filtered_etfs[filtered_etfs.ticker == ticker].item_name[0]
 
     st.write(error)
 else:
