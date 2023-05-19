@@ -26,7 +26,8 @@ def dendrogram(etfs):
         # title='덴드로그램',  # 그래프 제목
         xaxis={'title': '클러스터'},  # x축 제목
         yaxis={'title': '거리'},  # y축 제목
-        height=600
+        height=600,
+        margin=dict(l=0, r=0, t=0, b=0)  # 여백을 모두 0으로 설정
     )
     
     st.plotly_chart(fig, use_container_width=True)
@@ -57,6 +58,7 @@ def silhouette(corr_matrix):
         xaxis_title='클러스터 수',
         yaxis_title='실루엣 스코어',
         height=400,
+        margin=dict(l=0, r=0, t=0, b=0)  # 여백을 모두 0으로 설정
     )
     st.plotly_chart(fig, use_container_width=True)
 
