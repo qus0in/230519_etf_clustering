@@ -6,10 +6,10 @@ from scipy.spatial.distance import squareform
 
 from src.data.history import *
 
-def dendrogram(filtered_etfs):
+def dendrogram(etfs):
     data = {k: v.Close for k, v in st.session_state.history.items()}
     df = pd.concat(data, axis=1)
-    df_er = get_earning_rate(df, filtered_etfs)
+    df_er = get_earning_rate(df, etfs)
 
     # 상관계수 행렬 계산
     corr_matrix = df_er.corr()
