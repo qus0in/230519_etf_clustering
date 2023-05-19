@@ -21,11 +21,11 @@ class EtfRequestDTO:
         }
 
 def get_etf_list(dto: EtfRequestDTO):
-    df = pd.DataFrame(_get_data())
+    df = pd.DataFrame(_get_data(dto.params))
     return df.iloc[:, [0, 1, 2, -2, -1]]
 
 @st.cache
-def _get_data(params):
+def _get_data(params: dict):
     ENDPOINT = 'https://finance.naver.com/api/sise/etfItemList.nhn'
     res = requests.get(ENDPOINT, params)
     data = res.json()['result']['etfItemList']
