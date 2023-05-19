@@ -25,10 +25,17 @@ def sidebar():
         st.slider("상장일", key="history_days",
                   min_value=100, max_value=500, step=50, value=200)
         ban_kwd_expander(FILTER_KWD)
-        st.button(**_BUTTON_OPTION)
+        st.button(**_LOAD_BUTTON_OPTION)
+        st.button(**_CLEAR_BUTTON_OPTION)
 
-_BUTTON_OPTION = {
+_LOAD_BUTTON_OPTION = {
     "label": "🔄 불러오기",
     "use_container_width" : True,
     "key": "run",
+}
+
+_CLEAR_BUTTON_OPTION = {
+    "label": "🚿 리셋",
+    "use_container_width" : True,
+    "on_click": st.cache_data.clear,
 }
