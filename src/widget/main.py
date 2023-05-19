@@ -10,7 +10,7 @@ def build():
             filtered_etfs = filter_etf_list(etfs)
 
         check_session()
-        load_history(filtered_etfs.ticker)
+        load_history(filtered_etfs)
         
         dendrogram()
 
@@ -27,7 +27,7 @@ def check_session():
     if 'history' not in st.session_state:
         st.session_state['history'] = {}
 
-def load_history(tickers):
+def load_history(filtered_etfs):
     error = []
     progress_bar = bar()
     
@@ -36,7 +36,7 @@ def load_history(tickers):
         try:
             st.session_state.history[ticker] = get_history(ticker, st.session_state.history_days)
         except:
-            error.append((ticker, filtered_etfs[filtered_etfs.ticker == ticker].iloc[0].item_name))
+            error.append((filtered_etfs.ticker, filtered_etfs[filtered_etfs.ticker == ticker].iloc[0].item_name))
         rate = (idx + 1) / len(tickers)
         progress_bar.progress(rate, text=_PROGERSS_TEXT + f"({rate * 100:.2f}%)")
     
