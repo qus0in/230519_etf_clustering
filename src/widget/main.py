@@ -13,7 +13,7 @@ def build():
         check_session()
         load_history(filtered_etfs)
         
-        dendrogram(etfs.set_index('item_code'))
+        dendrogram(etfs.set_index('itemcode'))
 
     else:
         
