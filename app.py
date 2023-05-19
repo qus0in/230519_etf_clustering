@@ -1,3 +1,3 @@
-import streamlit as st
+from presentation.view import main
 
-st.write("hi")
+main.build()
