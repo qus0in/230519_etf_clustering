@@ -57,4 +57,4 @@ def clustering(corr_matrix):
         xaxis_title='클러스터 수',
         yaxis_title='실루엣 스코어'
     )
-    fig.show()
+    st.plotly_chart(fig, use_container_width=True)
