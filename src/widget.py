@@ -12,3 +12,7 @@ def quantile_slider(label, key, default=0.5):
         label=label + " 백분위수",
         key=key + "_quantile",
         **SLIDER_OPTION)
+
+def ban_kwd_expander(kwd):
+    with st.expander("제외 키워드"):
+        st.write("🚫 " + " 🚫 ".join(kwd))
