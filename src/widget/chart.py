@@ -8,8 +8,8 @@ from sklearn.metrics import silhouette_score
 
 from src.data.history import *
 
-def dendrogram(etfs):
-    data = {k: v.Close for k, v in st.session_state.history.items()}
+def dendrogram(etfs, history):
+    data = {k: v.Close for k, v in history}
     df = pd.concat(data, axis=1)
     df_er = get_earning_rate(df, etfs)
 

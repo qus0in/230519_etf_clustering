@@ -13,10 +13,9 @@ def build():
             etfs = get_etf_list()
             filtered_etfs = filter_etf_list(etfs)
 
-        check_session()
-        load_history(filtered_etfs)
+        history = load_history(filtered_etfs)
         with st.expander("덴드로그램"):
-            corr_matrix = dendrogram(filtered_etfs.set_index('ticker'))
+            corr_matrix = dendrogram(etfs.set_index('ticker'), history)
         with st.expander("실루엣 스코어"):
             best_number = silhouette(corr_matrix)
         st.write(best_number)
@@ -30,19 +29,16 @@ _PROGERSS_TEXT = "🫠 거래 데이터를 불러오는 중입니다"
 def bar():
     return st.progress(0, text=_PROGERSS_TEXT)
 
-def check_session():
-    if 'history' not in st.session_state:
-        st.session_state['history'] = {}
-
 def load_history(filtered_etfs):
     error = []
     progress_bar = bar()
     tickers = filtered_etfs.ticker
+    history = {}
 
     for idx in range(len(tickers)):
         ticker = tickers[idx]
         try:
-            st.session_state.history[ticker] = get_history(ticker, st.session_state.history_days)
+            history[ticker] = get_history(ticker, st.session_state.history_days)
         except:
             error.append((ticker, filtered_etfs[filtered_etfs.ticker == ticker].iloc[0].item_name))
         rate = (idx + 1) / len(tickers)
@@ -56,4 +52,5 @@ def load_history(filtered_etfs):
                             ).set_index("종목코드"),
             height=250,
             use_container_width=True)
-
+    
+    return history
