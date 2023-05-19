@@ -17,10 +17,9 @@ def build():
         with st.expander("실루엣 스코어"):
             best_number = silhouette(corr_matrix)
         st.write(best_number)
-
+ 
     else:
-        
-        st.info("ready...")
+        st.image(Image.open("img/welcome.png"))
 
 _PROGERSS_TEXT = "🫠 거래 데이터를 불러오는 중입니다"
 
