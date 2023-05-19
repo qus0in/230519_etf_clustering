@@ -2,7 +2,8 @@ import requests
 import pandas as pd
 import streamlit as st
 
-from src.enums import *
+from src.data.enums import *
+from src.data.constants import *
 
 class EtfListRequestDTO:
     def __init__(self,
@@ -35,14 +36,6 @@ def get_etf_list(dto: EtfListRequestDTO=None):
         "marketSum": "market_cap"
     }, inplace=True)
     return df
-
-FILTER_KWD = [
-    "레버리지", "2X", "배당", "TRF", "TDF",
-    "방어", "가치", "리츠", "은행", "보험", "증권",
-    "금리", "단기채권", "단기통안채", "단기자금",
-    "삼성", "ESG", "현대", "TSMC", "테슬라",
-    "BBIG", "머니마켓", "혼합", "TIGER TOP10", 
-]
 
 def filter_etf_list(etfList, volume = 0.5, cap = 0.5):
     kwd_filter = [f"item_name.str.contains('{k}')" for k in FILTER_KWD]
