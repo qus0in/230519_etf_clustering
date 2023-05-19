@@ -9,4 +9,4 @@ etfItemList = get_etf_item_list(
 df = pd.DataFrame(etfItemList)
 df.set_index('itemcode', inplace=True)
 df.drop(inplace=True, labels=["etfTabCode", "risefall"], axis=1)
-st.dataframe(etfItemList)
+st.dataframe(df)
