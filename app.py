@@ -6,8 +6,9 @@ import streamlit as st
 sidebar()
 
 if st.session_state.run:
-    etfs = get_etf_list()
-    filtered_etfs = filter_etf_list(etfs)
+    with st.spinner("ETF 리스트 정보 받아오기"):
+        etfs = get_etf_list()
+        filtered_etfs = filter_etf_list(etfs)
 
     histories = {}
     error = {}
@@ -15,7 +16,7 @@ if st.session_state.run:
         try:
             histories[ticker] = get_history(ticker, st.session_state.history_days)
         except:
-            error[ticker] = filtered_etfs[filtered_etfs.ticker == ticker]
+            error[ticker] = filtered_etfs[filtered_etfs.ticker == ticker].item_name[0]
 
     st.write(error)
 else:

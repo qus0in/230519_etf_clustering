@@ -51,7 +51,7 @@ def filter_etf_list(etfList, volume = 0.5, cap = 0.5):
         + f" and market_cap > {etfList.market_cap.quantile(st.session_state.market_cap_quantile)}"
     return etfList.query(query).reset_index(drop=True)
 
-@st.cache_data
+@st.cache_data(show_spinner=False)
 def _get_data(params: dict):
     ENDPOINT = 'https://finance.naver.com/api/sise/etfItemList.nhn'
     res = requests.get(ENDPOINT, params)
