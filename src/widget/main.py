@@ -52,5 +52,5 @@ def load_history(filtered_etfs):
                             ).set_index("종목코드"),
             height=250,
             use_container_width=True)
-    
+    st.write(history)
     return history
