@@ -9,10 +9,19 @@ def filtering(etfList, kwd, volume = 0.5, cap = 0.5):
         + f" and market_cap > {etfList.market_cap.quantile(st.session_state.market_cap_quantile)}"
     return etfList.query(query)
 
+SLIDER_OPTION = {
+    "min_value" : 0,
+    "max_value" : 1,
+    "step"      : 0.1,
+    "value"     : 0.5,
+}
+
 st.slider(
-    min_value=0, max_value=1, step=0.1, value=0.5, key="trade_volume_quantile")
+    label="거래금액 백분위수",
+    key="trade_volume_quantile", **SLIDER_OPTION)
 st.slider(
-    min_value=0, max_value=1, step=0.1, value=0.5, key="market_cap_quantile")
+    label="시가총액 백분위수",
+    key="market_cap_quantile", **SLIDER_OPTION)
 kwd = ["레버리지", "2X", "금리", "단기채권", "단기통안채"]
 etfList = get_etf_list(
     EtfListRequestDTO(
