@@ -13,7 +13,7 @@ if st.session_state.run:
         filtered_etfs = filter_etf_list(etfs)
 
     histories = {}
-    error = {}
+    error = []
     tickers = filtered_etfs.ticker
     progress_text = "🫠 거래 데이터를 불러오는 중입니다"
     bar = st.progress(0, text=progress_text)
@@ -22,12 +22,10 @@ if st.session_state.run:
         try:
             histories[ticker] = get_history(ticker, st.session_state.history_days)
         except:
-            error[ticker] = filtered_etfs[filtered_etfs.ticker == ticker].iloc[0].item_name
+            error.append((ticker, filtered_etfs[filtered_etfs.ticker == ticker].iloc[0].item_name))
         bar.progress((idx + 1) / len(tickers), text=progress_text)
     st.subheader(f"상장일 {st.session_state.history_days}일 미만")
-    df = pd.DataFrame(error)
-    df.columns=["종목명"]
-    st.dataframe(df)
+    st.dataframe(pd.DataFrame(error, columns=["종목코드", "종목명"]))
     bar.empty()
 else:
     st.info("ready...")
