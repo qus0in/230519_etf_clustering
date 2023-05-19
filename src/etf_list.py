@@ -1,7 +1,8 @@
 import requests
+import pandas as pd
 from src.enums import *
 
-class EtfItemDTO:
+class EtfRequestDTO:
     def __init__(self,
                  etfType: EtfType,
                  targetColumn: TargetColumn) -> None:
@@ -19,6 +20,8 @@ class EtfItemDTO:
 
 ENDPOINT = 'https://finance.naver.com/api/sise/etfItemList.nhn'
 
-def get_etf_item_list(dto: EtfItemDTO):
+def get_etf_item_list(dto: EtfRequestDTO):
     res = requests.get(ENDPOINT, dto.params)
+    # df.set_index('itemcode', inplace=True)
+    # df = df[['itemcode', 'itemname']]
     return res.json()['result']['etfItemList']
