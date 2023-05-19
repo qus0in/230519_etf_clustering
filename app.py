@@ -22,8 +22,8 @@ if st.session_state.run:
         except:
             error[ticker] = filtered_etfs[filtered_etfs.ticker == ticker].iloc[0].item_name
         bar.progress((idx + 1) / len(tickers), text=progress_text)
-    st.subheader("상장일 미충족")
-    st.dataframe(error)
+    st.subheader(f"상장일 {st.session_state.history_days}일 미만")
+    st.dataframe(pd.DataFrame(error, columns=["종목코드", "종목명"]))
     bar.empty()
 else:
     st.info("ready...")
