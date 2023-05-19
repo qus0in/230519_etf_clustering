@@ -21,7 +21,10 @@ def build():
         st.write(best_number)
  
     else:
-        st.image(Image.open("img/welcome.png"))
+        script_directory = os.path.dirname(os.path.abspath(__file__))  # 스크립트 파일의 디렉토리 경로
+        image_path = os.path.join(script_directory, 'img/welcome.png')  # 이미지 파일의 상대 경로
+        image = Image.open(image_path)
+        st.image(image)
 
 _PROGERSS_TEXT = "🫠 거래 데이터를 불러오는 중입니다"
 
