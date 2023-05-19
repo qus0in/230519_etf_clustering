@@ -23,3 +23,10 @@ def sidebar():
         quantile_slider("거래금액", "trade_volume", 0.7)
         quantile_slider("시가총액", "market_cap", 0.7)
         ban_kwd_expander(FILTER_KWD)
+        st.button(**_BUTTON_OPTION)
+
+_BUTTON_OPTION = {
+    "label": "🔄 불러오기",
+    "use_container_width" : True,
+    "on_click": st.balloons
+}
