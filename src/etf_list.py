@@ -20,11 +20,13 @@ class EtfRequestDTO:
             "sortOrder": self.sortOrder
         }
 
-ENDPOINT = 'https://finance.naver.com/api/sise/etfItemList.nhn'
-
-@st.cache_data
 def get_etf_list(dto: EtfRequestDTO):
+    df = pd.DataFrame(_get_data())
+    return df.iloc[:, [0, 1, 2, -2, -1]]
+
+@st.cache
+def _get_data(params):
+    ENDPOINT = 'https://finance.naver.com/api/sise/etfItemList.nhn'
     res = requests.get(ENDPOINT, dto.params)
     data = res.json()['result']['etfItemList']
-    df = pd.DataFrame(data)
-    return df.iloc[:, [0, 1, 2, -2, -1]]
+    return data
