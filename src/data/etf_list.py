@@ -40,8 +40,8 @@ def get_etf_list(dto: EtfListRequestDTO=None):
 def filter_etf_list(etfList):
     kwd_filter = [f"item_name.str.contains('{k}')" for k in FILTER_KWD]
     query = "not (" + " or ".join(kwd_filter) + ")"\
-        + f" and trade_volume > {etfList.trade_volume.quantile(st.session_state.trade_volume_quantile)}"\
-        + f" and market_cap > {etfList.market_cap.quantile(st.session_state.market_cap_quantile)}"
+        + f" and trade_volume >= {etfList.trade_volume.quantile(.5)}"\
+        + f" and market_cap >= {etfList.market_cap.quantile(.5)}"
     return etfList.query(query).reset_index(drop=True)
 
 @st.cache_data(show_spinner=False)

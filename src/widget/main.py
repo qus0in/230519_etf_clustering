@@ -42,7 +42,7 @@ def load_history(filtered_etfs):
     for idx in range(len(tickers)):
         ticker = tickers[idx]
         try:
-            st.session_state.history[ticker] = get_history(ticker, st.session_state.history_days)
+            st.session_state.history[ticker] = get_history(ticker, 200)
         except:
             error.append((ticker, filtered_etfs[filtered_etfs.ticker == ticker].iloc[0].item_name))
         rate = (idx + 1) / len(tickers)
