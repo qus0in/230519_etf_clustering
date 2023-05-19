@@ -11,7 +11,7 @@ def build():
             filtered_etfs = filter_etf_list(etfs)
 
         check_session()
-        load_history(filtered_etfs.set_index('item_name'))
+        load_history(filtered_etfs)
         
         dendrogram(etfs)
 
