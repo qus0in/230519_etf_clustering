@@ -3,7 +3,7 @@ from src.enums import *
 import streamlit as st
 
 etfList = get_etf_list(
-    EtfRequestDTO(EtfType.전체,
+    EtfListRequestDTO(EtfType.전체,
                   TargetColumn.시가총액)
-)
+).query("category != 1")
 st.dataframe(etfList)

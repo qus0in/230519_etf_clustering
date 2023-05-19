@@ -4,7 +4,7 @@ import streamlit as st
 
 from src.enums import *
 
-class EtfRequestDTO:
+class EtfListRequestDTO:
     def __init__(self,
                  etfType: EtfType,
                  targetColumn: TargetColumn) -> None:
@@ -20,7 +20,7 @@ class EtfRequestDTO:
             "sortOrder": self.sortOrder
         }
 
-def get_etf_list(dto: EtfRequestDTO):
+def get_etf_list(dto: EtfListRequestDTO):
     df = pd.DataFrame(_get_data(dto.params)).iloc[:, [0, 1, 2, -2, -1]]
     df.rename(columns={
         "itemcode": "ticker",
