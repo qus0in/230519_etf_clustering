@@ -12,7 +12,7 @@ def build():
         check_session()
         load_history(filtered_etfs.ticker)
         
-        st.info("set...")
+        dendrogram()
 
     else:
         
@@ -46,3 +46,4 @@ def load_history(tickers):
                             ).set_index("종목코드"),
             height=250,
             use_container_width=True)
+
